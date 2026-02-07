@@ -9,7 +9,7 @@ const contactForm = document.querySelector('.contact-form');
 // Theme Toggle Functionality
 function initTheme() {
     // Check for saved theme preference or default to light mode
-    const savedTheme = localStorage.getItem('theme') || 'light';
+    const savedTheme = localStorage.getItem('theme') || 'dark';
     document.documentElement.setAttribute('data-theme', savedTheme);
     updateThemeIcon(savedTheme);
 }
@@ -417,3 +417,4 @@ body.loaded {
 const loadingStyleSheet = document.createElement('style');
 loadingStyleSheet.textContent = loadingCSS;
 document.head.appendChild(loadingStyleSheet);
+
