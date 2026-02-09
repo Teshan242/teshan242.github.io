@@ -26,6 +26,24 @@
     input.command { background:black; border:none; outline:none; color:#00ff9c; font-family:'Share Tech Mono', monospace; width:100%; }
     .typing { display:inline-block; overflow:hidden; white-space:nowrap; border-right:2px solid #00ff9c; }
     .clock { margin-top: 10px; font-size:14px; }
+
+    /* MOBILE ADJUSTMENTS */
+    @media (max-width: 768px) {
+      .terminal {
+        width: 95%;
+        padding: 15px;
+        font-size: 14px;
+      }
+      .line {
+        font-size: 14px;
+      }
+      input.command {
+        font-size: 14px;
+      }
+      .clock {
+        font-size: 12px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -61,13 +79,14 @@
 ⠀⠀⠀⠀⠀⠀⠈⣿⣟⠀⠀⠀⠀⠀⠀⣿⣿⠁⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠸⡇⠀⠀⠀⠀⠀⠀⢹⠇⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠁⠀⠀⠀⠀⠀⠀⠘⠀⠀⠀⠀⠀⠀⠀
+  </pre>
   </div>
 
   <canvas id="matrix"></canvas>
 
   <div class="terminal" id="terminal">
     <div class="line"><span class="prompt">root@teshan:~$</span> booting system...</div>
-    <input class="command" id="cmdInput" placeholder="Type 'help' " autofocus />
+    <input class="command" id="cmdInput" placeholder="Type 'help' after boot" autofocus />
     <div class="clock" id="clock"></div>
   </div>
 
@@ -96,13 +115,26 @@
 
     const canvas = document.getElementById('matrix');
     const ctx = canvas.getContext('2d');
-    canvas.height = window.innerHeight;
-    canvas.width = window.innerWidth;
+
+    function resizeCanvas(){
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    window.addEventListener('orientationchange', resizeCanvas);
+    resizeCanvas();
+
     const letters = "01";
     const fontSize = 16;
     const columns = canvas.width / fontSize;
     const drops = [];
     for(let x=0;x<columns;x++) drops[x]=1;
+
+    let matrixInterval;
+    function startMatrix(){
+      matrixInterval = setInterval(draw, 33);
+    }
+
     function draw(){
       ctx.fillStyle="rgba(0,0,0,0.05)";
       ctx.fillRect(0,0,canvas.width,canvas.height);
@@ -114,13 +146,37 @@
         drops[i]++;
       }
     }
-    setInterval(draw,33);
+    startMatrix();
+
+    if(window.innerWidth < 768){
+      clearInterval(matrixInterval);
+      setInterval(() => {
+        ctx.fillStyle="rgba(0,0,0,0.1)";
+        ctx.fillRect(0,0,canvas.width,canvas.height);
+        ctx.font=(fontSize-2)+"px monospace";
+        for(let i=0;i<drops.length;i++){
+          if(i%2===0){
+            ctx.fillStyle = '#00ff00';
+            ctx.fillText(letters.charAt(Math.floor(Math.random()*letters.length)),i*fontSize,drops[i]*fontSize);
+          }
+          if(drops[i]*fontSize>canvas.height&&Math.random()>0.975)drops[i]=0;
+          drops[i]++;
+        }
+      },50);
+    }
 
     function initTerminal(){
       const cmdInput=document.getElementById('cmdInput');
       const terminalDiv=document.getElementById('terminal');
       const history=[];
       let historyIdx=-1;
+
+      // Auto-focus for mobile touch
+      terminalDiv.addEventListener('click', ()=> cmdInput.focus());
+      if(/Mobi|Android/i.test(navigator.userAgent)){
+        terminalDiv.addEventListener('touchstart', ()=> cmdInput.focus());
+      }
+
       cmdInput.addEventListener('keydown',function(e){
         if(e.key==='Enter'){
           const value=cmdInput.value.trim(); if(!value) return;
@@ -133,6 +189,12 @@
         } else if(e.key==='ArrowUp'){ if(historyIdx>0){historyIdx--; cmdInput.value=history[historyIdx];} e.preventDefault(); }
         else if(e.key==='ArrowDown'){ if(historyIdx<history.length-1){historyIdx++; cmdInput.value=history[historyIdx];} else {historyIdx=history.length; cmdInput.value='';} e.preventDefault(); }
       });
+
+      // Smooth scroll on new lines
+      const observer = new MutationObserver(() => {
+        terminalDiv.scrollTo({ top: terminalDiv.scrollHeight, behavior: 'smooth' });
+      });
+      observer.observe(terminalDiv, { childList: true, subtree: true });
     }
 
     function handleCommand(value){
@@ -154,8 +216,8 @@
 
     const audio = new Audio('https://freesound.org/data/previews/276/276020_5121236-lq.mp3');
     function playTypingSound(){ audio.currentTime=0; audio.play().catch(()=>{}); }
+
   </script>
 
 </body>
-
 </html>
