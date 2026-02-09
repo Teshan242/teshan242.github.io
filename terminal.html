@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hacker Terminal | Teshan</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Share Tech Mono', monospace; }
+    body { background: black; color: #00ff9c; height: 100vh; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+    canvas { position: fixed; top: 0; left: 0; z-index: -1; }
+
+    #loadingScreen { position: fixed; top:0; left:0; width:100%; height:100%; background:black; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#00ff9c; z-index:1000; }
+    #loadingScreen pre { font-size:16px; line-height:18px; white-space: pre; opacity:0; animation: blink 1s infinite; }
+    #loadingScreen .ascii-title { font-size:16px; margin-bottom:20px; text-align:center; white-space: pre; animation: blink 1s infinite alternate; }
+    @keyframes blink { 50% { opacity: 0.3; } 100% { opacity: 1; } }
+
+    .terminal { width: 90%; max-width: 900px; background: rgba(0,0,0,0.85); border: 2px solid #00ff9c; padding: 25px; box-shadow: 0 0 20px #00ff9c; border-radius: 10px; animation: glow 2s infinite alternate, flicker 0.1s infinite; overflow-y: auto; max-height: 90vh; display:none; }
+    @keyframes glow { from { box-shadow:0 0 10px #00ff9c; } to { box-shadow:0 0 30px #00ff9c; } }
+    @keyframes flicker { 0%, 100% { opacity:1; } 50% { opacity:0.85; } }
+
+    .line { margin:8px 0; white-space: nowrap; overflow: hidden; border-right: 2px solid #00ff9c; }
+    .prompt { color:#00ffaa; }
+    input.command { background:black; border:none; outline:none; color:#00ff9c; font-family:'Share Tech Mono', monospace; width:100%; }
+    .typing { display:inline-block; overflow:hidden; white-space:nowrap; border-right:2px solid #00ff9c; }
+    .clock { margin-top: 10px; font-size:14px; }
+  </style>
+</head>
+<body>
+
+  <div id="loadingScreen">
+    <pre class="ascii-title">
+    </pre>
+    <pre>
+⠀⠀⢀⣠⣴⣶⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣶⣤⣀⠀⠀
+⠀⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀
+⠀⢸⣟⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⠀
+⠀⣿⡿⣿⡟⠛⠛⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⠛⠛⢻⣿⣿⠀
+⠀⣿⡿⠋⠉⠑⠒⠤⣉⠻⢿⣿⣿⡿⠋⠀⠀⠀⠁⠐⠳⢹⡇
+⠀⣿⣷⣶⣦⣄⡀⠀⠀⠉⠺⡿⠿⠃⠀⠀⠀⣠⣴⣶⣶⣾⡇
+⠀⣿⣿⣿⣿⣿⣿⣦⡀⠀⠀⣴⣇⠀⠀⣰⡿⠿⠿⢿⣿⢛⡇
+⠀⣡⡌⠁⠀⠀⠀⠈⠉⠀⠈⣿⣷⠀⠀⠁⠀⠀⠀⠀⣠⣌⣿
+⠀⢿⣿⣿⣶⣦⣴⣶⣾⣰⠄⣿⣿⠠⣸⣶⣶⣶⣶⣿⣿⣿⡇
+⠀⠈⢿⣿⣿⣿⣿⣿⣿⣿⠃⣿⣿⠐⣿⢿⣿⣿⣟⣋⣠⡔⠀
+⠀⠸⡀⠉⠉⣉⣍⣭⠹⢿⠁⣿⣿⡇⠿⠆⣭⣉⡉⠉⡁⢰⠀
+⠀⠀⢷⡀⢀⠈⠻⠿⠶⠄⠀⠈⠉⠀⠠⠾⠿⠟⠁⠐⢠⠇⠀
+⠀⠀⠈⢷⡀⠐⢤⣤⣀⡀⠀⠴⠷⠄⠀⣠⣤⡤⠌⠠⠋⠀⠀
+⠀⠀⠀⠀⠱⣷⡄⢦⣍⣙⠛⠒⠒⠒⣉⣩⣤⠆⢔⠃⠀⠀⠀
+⠀⠀⠀⠀⡀⠈⠛⣆⢻⣿⡇⠀⡄⠸⣿⡿⠣⡎⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⣇⠀⠀⠈⠻⣿⣇⠀⠀⢸⣿⡤⠋⠀⢀⡆⠀⠀⠀
+⠀⠀⠀⢘⣿⣦⣀⠀⠀⠈⠙⠀⠀⠟⠉⠀⠀⣠⣾⡿⠀⠀⠀
+⠀⠀⠀⠀⣿⣿⣿⣷⣤⡀⠀⠀⠀⠀⣀⣴⣿⣿⣿⡏⠀⠀⠀
+⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⠗⠀⠀⠺⣿⣿⣿⣿⣿⠃⠀⠀⠀
+⠀⠀⠀⠀⠈⣿⣿⣿⡟⠁⠀⠀⠀⠀⠈⢿⣿⣿⡿⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠈⣿⠟⢠⣦⠀⠀⠀⠀⣴⡄⠻⣿⠃⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⢡⡌⣰⣿⣿⡇⠀⠀⢸⣿⣧⣆⢁⠆⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⣿⣿⣿⡟⠀⠀⠀⠀⢻⣿⣿⣿⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⢻⣿⣿⠁⠀⠀⠀⠀⠈⣿⣿⡏⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠈⣿⣟⠀⠀⠀⠀⠀⠀⣿⣿⠁⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠸⡇⠀⠀⠀⠀⠀⠀⢹⠇⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠁⠀⠀⠀⠀⠀⠀⠘⠀⠀⠀⠀⠀⠀⠀
+  </div>
+
+  <canvas id="matrix"></canvas>
+
+  <div class="terminal" id="terminal">
+    <div class="line"><span class="prompt">root@teshan:~$</span> booting system...</div>
+    <input class="command" id="cmdInput" placeholder="Type 'help' after boot" autofocus />
+    <div class="clock" id="clock"></div>
+  </div>
+
+  <script>
+    const loadingScreen = document.getElementById('loadingScreen');
+    const terminal = document.getElementById('terminal');
+
+    function showLoading(){
+      const asciiTitle = loadingScreen.querySelector('.ascii-title');
+      const asciiFace = loadingScreen.querySelectorAll('pre')[1];
+      let lines = asciiTitle.textContent.split('\n');
+      asciiTitle.textContent='';
+      let idx = 0;
+      function typeLines(){
+        if(idx<lines.length){
+          asciiTitle.textContent += lines[idx]+'\n';
+          idx++; setTimeout(typeLines, 100);
+        } else {
+          asciiFace.style.opacity=1;
+          setTimeout(()=>{loadingScreen.style.display='none'; terminal.style.display='block'; initTerminal(); playTypingSound();},2000);
+        }
+      }
+      typeLines();
+    }
+    showLoading();
+
+    const canvas = document.getElementById('matrix');
+    const ctx = canvas.getContext('2d');
+    canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth;
+    const letters = "01";
+    const fontSize = 16;
+    const columns = canvas.width / fontSize;
+    const drops = [];
+    for(let x=0;x<columns;x++) drops[x]=1;
+    function draw(){
+      ctx.fillStyle="rgba(0,0,0,0.05)";
+      ctx.fillRect(0,0,canvas.width,canvas.height);
+      ctx.font=fontSize+"px monospace";
+      for(let i=0;i<drops.length;i++){
+        ctx.fillStyle = i%3===0?'#006400':(i%3===1?'#00ff00':'#39ff14');
+        ctx.fillText(letters.charAt(Math.floor(Math.random()*letters.length)),i*fontSize,drops[i]*fontSize);
+        if(drops[i]*fontSize>canvas.height&&Math.random()>0.975)drops[i]=0;
+        drops[i]++;
+      }
+    }
+    setInterval(draw,33);
+
+    function initTerminal(){
+      const cmdInput=document.getElementById('cmdInput');
+      const terminalDiv=document.getElementById('terminal');
+      const history=[];
+      let historyIdx=-1;
+      cmdInput.addEventListener('keydown',function(e){
+        if(e.key==='Enter'){
+          const value=cmdInput.value.trim(); if(!value) return;
+          history.push(value); historyIdx=history.length;
+          const newLine=document.createElement('div'); newLine.className='line';
+          newLine.innerHTML=`<span class='prompt'>root@teshan:~$</span> ${value}`;
+          terminalDiv.appendChild(newLine);
+          handleCommand(value);
+          cmdInput.value=''; terminalDiv.scrollTop=terminalDiv.scrollHeight; playTypingSound();
+        } else if(e.key==='ArrowUp'){ if(historyIdx>0){historyIdx--; cmdInput.value=history[historyIdx];} e.preventDefault(); }
+        else if(e.key==='ArrowDown'){ if(historyIdx<history.length-1){historyIdx++; cmdInput.value=history[historyIdx];} else {historyIdx=history.length; cmdInput.value='';} e.preventDefault(); }
+      });
+    }
+
+    function handleCommand(value){
+      const terminalDiv=document.getElementById('terminal');
+      function displayResponse(text){
+        const respLine=document.createElement('div'); respLine.className='line'; respLine.innerHTML=`<span class='typing'></span>`;
+        terminalDiv.appendChild(respLine);
+        const span=respLine.querySelector('.typing'); let idx=0;
+        function typeEffect(){if(idx<text.length){span.innerHTML+=text[idx]; idx++; setTimeout(typeEffect,30); playTypingSound();} else {span.classList.remove('typing');}}
+        typeEffect();
+      }
+      if(value.toLowerCase()==='help') displayResponse('Available commands: about, skills, projects, contact');
+      else if(value.toLowerCase()==='about') displayResponse('I am Teshan, a Cyber Security student passionate about Web Development & Security.');
+      else if(value.toLowerCase()==='skills') displayResponse('Skills: Python, Web Security, Networking, Linux, CTF');
+      else if(value.toLowerCase()==='projects') displayResponse('Projects: Web Vulnerability Scanner, NIDS, Password Security Analyzer');
+      else if(value.toLowerCase()==='contact') displayResponse('Email: pasindukumarasinghe200@gmail.com | LinkedIn: pasindu-kumarasinghe');
+      else displayResponse('Command not found. Type help for commands.');
+    }
+
+    const audio = new Audio('https://freesound.org/data/previews/276/276020_5121236-lq.mp3');
+    function playTypingSound(){ audio.currentTime=0; audio.play().catch(()=>{}); }
+  </script>
+
+</body>
+</html>
