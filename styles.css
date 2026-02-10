@@ -14,16 +14,29 @@
 }
 
 [data-theme="dark"] {
-    --primary-color: #7c3aed;
-    --secondary-color: #a855f7;
+    --primary-color: #38bdf8;
+    --secondary-color: #a78bfa;
     --text-color: #f8f9fa;
     --text-secondary: #cbd5e1;
-    --bg-color: #0f172a;
-    --bg-secondary: #1e293b;
-    --bg-card: #1e293b;
-    --border-color: #334155;
+    --bg-color: #0b1220;
+    --bg-secondary: #0f172a;
+    --bg-card: #111c33;
+    --border-color: #1f2a44;
     --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="hacker"] {
+    --primary-color: #22c55e;
+    --secondary-color: #16a34a;
+    --text-color: #d1fae5;
+    --text-secondary: rgba(209, 250, 229, 0.75);
+    --bg-color: #050a06;
+    --bg-secondary: #070f0a;
+    --bg-card: #07140d;
+    --border-color: rgba(34, 197, 94, 0.22);
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.55);
+    --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.65);
 }
 
 /* Base Styles */
@@ -45,6 +58,70 @@ body {
     transition: var(--transition);
 }
 
+[data-theme="hacker"] body {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    text-shadow: 0 0 14px rgba(34, 197, 94, 0.10);
+}
+
+[data-theme="hacker"] body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    background:
+        repeating-linear-gradient(
+            to bottom,
+            rgba(34, 197, 94, 0.05) 0px,
+            rgba(34, 197, 94, 0.05) 1px,
+            rgba(0, 0, 0, 0) 3px,
+            rgba(0, 0, 0, 0) 6px
+        );
+    mix-blend-mode: screen;
+    opacity: 0.18;
+    animation: hackerScan 7s linear infinite;
+}
+
+@keyframes hackerScan {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(12px); }
+}
+
+#matrix-rain {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 9998;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    mix-blend-mode: screen;
+    filter: blur(0.2px);
+}
+
+[data-theme="hacker"] #matrix-rain {
+    opacity: 0.28;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    [data-theme="hacker"] body::before {
+        animation: none;
+    }
+
+    [data-theme="hacker"] #matrix-rain {
+        opacity: 0.12;
+    }
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 3px;
+}
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -56,10 +133,16 @@ body {
     position: fixed;
     top: 0;
     width: 100%;
-    background-color: var(--bg-color);
-    border-bottom: 1px solid var(--border-color);
+    background-color: transparent;
+    border-bottom: 1px solid transparent;
     z-index: 1000;
     transition: var(--transition);
+}
+
+.navbar.scrolled {
+    background-color: var(--bg-color);
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: var(--shadow);
 }
 
 .nav-container {
@@ -75,6 +158,25 @@ body {
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--primary-color);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.nav-logo-img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+.nav-logo-text {
+    line-height: 1;
+    visibility: hidden;
+    width: 0;
+    height: 0;
+    overflow: hidden;
 }
 
 .nav-menu {
@@ -110,6 +212,12 @@ body {
     width: 100%;
 }
 
+.theme-toggles {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
 .theme-toggle {
     cursor: pointer;
     font-size: 1.2rem;
@@ -118,6 +226,10 @@ body {
 }
 
 .theme-toggle:hover {
+    color: var(--primary-color);
+}
+
+.theme-toggle.active {
     color: var(--primary-color);
 }
 
@@ -141,8 +253,18 @@ body {
     display: flex;
     align-items: center;
     padding: 80px 0;
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    color: white;
+    background:
+        radial-gradient(900px circle at 15% 10%, rgba(56, 189, 248, 0.20), transparent 60%),
+        radial-gradient(900px circle at 85% 20%, rgba(167, 139, 250, 0.18), transparent 60%),
+        var(--bg-color);
+    color: var(--text-color);
+}
+
+[data-theme="hacker"] .hero {
+    background:
+        radial-gradient(900px circle at 15% 10%, rgba(34, 197, 94, 0.14), transparent 60%),
+        radial-gradient(900px circle at 85% 20%, rgba(34, 197, 94, 0.08), transparent 60%),
+        var(--bg-color);
 }
 
 .hero-container {
@@ -188,7 +310,7 @@ body {
 .btn {
     padding: 12px 30px;
     border: none;
-    border-radius: 50px;
+    border-radius: 12px;
     font-size: 1rem;
     font-weight: 600;
     text-decoration: none;
@@ -198,8 +320,8 @@ body {
 }
 
 .btn-primary {
-    background-color: white;
-    color: var(--primary-color);
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: #0b1220;
 }
 
 .btn-primary:hover {
@@ -209,13 +331,14 @@ body {
 
 .btn-secondary {
     background-color: transparent;
-    color: white;
-    border: 2px solid white;
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
 }
 
 .btn-secondary:hover {
-    background-color: white;
-    color: var(--primary-color);
+    background-color: var(--bg-card);
+    border-color: var(--primary-color);
+    color: var(--text-color);
 }
 
 .hero-image {
@@ -280,6 +403,7 @@ section {
 /* Education Section */
 .education-card {
     background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
     padding: 2rem;
     border-radius: 15px;
     box-shadow: var(--shadow);
@@ -334,6 +458,7 @@ section {
 
 .skill-card {
     background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
     padding: 2rem;
     border-radius: 15px;
     box-shadow: var(--shadow);
@@ -383,6 +508,7 @@ section {
 
 .project-card {
     background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
     border-radius: 15px;
     box-shadow: var(--shadow);
     overflow: hidden;
