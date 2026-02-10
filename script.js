@@ -1,10 +1,116 @@
 // DOM Elements
 const themeToggle = document.getElementById('theme-icon');
+const hackerThemeToggle = document.getElementById('theme-toggle-hacker');
+const lightDarkThemeToggle = document.getElementById('theme-toggle-lightdark');
+const matrixCanvas = document.getElementById('matrix-rain');
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
 const navLinks = document.querySelectorAll('.nav-link');
 const skillBars = document.querySelectorAll('.skill-progress');
 const contactForm = document.querySelector('.contact-form');
+
+let matrixAnimationId = null;
+let matrixCtx = null;
+let matrixColumns = [];
+let matrixFontSize = 16;
+let matrixLastFrameAt = 0;
+let matrixChars = null;
+let matrixReduceMotion = false;
+
+function initMatrixChars() {
+    matrixChars = (
+        'アイウエオカキクケコサシスセソタチツテトナニヌネノ' +
+        'ハヒフヘホマミムメモヤユヨラリルレロワヲン' +
+        'pasindukumarasinghe' +
+        'pasindukumarasinghe' 
+    ).split('');
+}
+
+function resizeMatrixCanvas() {
+    if (!matrixCanvas) return;
+    const dpr = Math.max(1, window.devicePixelRatio || 1);
+
+    matrixCanvas.width = Math.floor(window.innerWidth * dpr);
+    matrixCanvas.height = Math.floor(window.innerHeight * dpr);
+    matrixCanvas.style.width = window.innerWidth + 'px';
+    matrixCanvas.style.height = window.innerHeight + 'px';
+
+    matrixCtx = matrixCanvas.getContext('2d');
+    if (!matrixCtx) return;
+    matrixCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    matrixFontSize = window.innerWidth < 480 ? 14 : 16;
+    const cols = Math.ceil(window.innerWidth / matrixFontSize);
+    matrixColumns = new Array(cols).fill(0).map(() => ({
+        y: Math.floor(Math.random() * window.innerHeight),
+        speed: matrixFontSize * (0.6 + Math.random() * 1.6)
+    }));
+}
+
+function drawMatrixFrame(ts) {
+    if (!matrixCtx || !matrixCanvas) return;
+
+    const frameInterval = 1000 / 30;
+    if (ts - matrixLastFrameAt < frameInterval) {
+        matrixAnimationId = window.requestAnimationFrame(drawMatrixFrame);
+        return;
+    }
+    matrixLastFrameAt = ts;
+
+    matrixCtx.fillStyle = 'rgba(0, 0, 0, 0.06)';
+    matrixCtx.fillRect(0, 0, window.innerWidth, window.innerHeight);
+
+    matrixCtx.font = `${matrixFontSize}px ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace`;
+    matrixCtx.textBaseline = 'top';
+
+    for (let i = 0; i < matrixColumns.length; i++) {
+        const text = matrixChars[Math.floor(Math.random() * matrixChars.length)];
+        const x = i * matrixFontSize;
+        const col = matrixColumns[i];
+        const y = col.y;
+
+        matrixCtx.fillStyle = 'rgba(209, 250, 229, 0.90)';
+        matrixCtx.fillText(text, x, y);
+
+        matrixCtx.fillStyle = 'rgba(34, 197, 94, 0.85)';
+        const trailY = y - matrixFontSize * 1.4;
+        if (trailY >= 0) {
+            const trailChar = matrixChars[Math.floor(Math.random() * matrixChars.length)];
+            matrixCtx.fillText(trailChar, x, trailY);
+        }
+
+        if (y > window.innerHeight && Math.random() > 0.985) {
+            col.y = 0;
+            col.speed = matrixFontSize * (0.6 + Math.random() * 1.6);
+        } else {
+            col.y = y + col.speed;
+        }
+    }
+
+    matrixAnimationId = window.requestAnimationFrame(drawMatrixFrame);
+}
+
+function startMatrixRain() {
+    if (!matrixCanvas) return;
+    if (matrixAnimationId !== null) return;
+
+    if (matrixReduceMotion) return;
+
+    if (!matrixChars) initMatrixChars();
+    resizeMatrixCanvas();
+    matrixLastFrameAt = 0;
+    matrixAnimationId = window.requestAnimationFrame(drawMatrixFrame);
+}
+
+function stopMatrixRain() {
+    if (matrixAnimationId !== null) {
+        window.cancelAnimationFrame(matrixAnimationId);
+        matrixAnimationId = null;
+    }
+    if (matrixCtx && matrixCanvas) {
+        matrixCtx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+    }
+}
 
 // Theme Toggle Functionality
 function initTheme() {
@@ -23,7 +129,32 @@ function toggleTheme() {
     updateThemeIcon(newTheme);
 }
 
+function toggleHackerTheme() {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'hacker' ? 'dark' : 'hacker';
+
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    updateThemeIcon(newTheme);
+}
+
+function handleThemeToggleKeydown(e, onActivate) {
+    if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        onActivate();
+    }
+}
+
 function updateThemeIcon(theme) {
+    if (theme === 'hacker') {
+        themeToggle.classList.remove('fa-sun');
+        themeToggle.classList.add('fa-moon');
+        if (hackerThemeToggle) hackerThemeToggle.classList.add('active');
+        if (lightDarkThemeToggle) lightDarkThemeToggle.classList.remove('active');
+        startMatrixRain();
+        return;
+    }
+
     if (theme === 'dark') {
         themeToggle.classList.remove('fa-moon');
         themeToggle.classList.add('fa-sun');
@@ -31,6 +162,10 @@ function updateThemeIcon(theme) {
         themeToggle.classList.remove('fa-sun');
         themeToggle.classList.add('fa-moon');
     }
+
+    if (hackerThemeToggle) hackerThemeToggle.classList.remove('active');
+    if (lightDarkThemeToggle) lightDarkThemeToggle.classList.add('active');
+    stopMatrixRain();
 }
 
 // Mobile Navigation Toggle
@@ -79,11 +214,9 @@ function animateSkillBars() {
 function updateNavbar() {
     const navbar = document.querySelector('.navbar');
     if (window.scrollY > 50) {
-        navbar.style.backgroundColor = 'var(--bg-color)';
-        navbar.style.boxShadow = 'var(--shadow)';
+        navbar.classList.add('scrolled');
     } else {
-        navbar.style.backgroundColor = 'transparent';
-        navbar.style.boxShadow = 'none';
+        navbar.classList.remove('scrolled');
     }
 }
 
@@ -292,6 +425,7 @@ function typeWriter() {
 // Initialize everything when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize theme
+    matrixReduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     initTheme();
     
     // Add reveal classes
@@ -303,9 +437,20 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initial animations
     animateSkillBars();
     revealOnScroll();
+
+    // Navbar initial state
+    updateNavbar();
+    updateActiveNavLink();
     
     // Event Listeners
     themeToggle.addEventListener('click', toggleTheme);
+    if (hackerThemeToggle) {
+        hackerThemeToggle.addEventListener('click', toggleHackerTheme);
+        hackerThemeToggle.addEventListener('keydown', (e) => handleThemeToggleKeydown(e, toggleHackerTheme));
+    }
+    if (lightDarkThemeToggle) {
+        lightDarkThemeToggle.addEventListener('keydown', (e) => handleThemeToggleKeydown(e, toggleTheme));
+    }
     hamburger.addEventListener('click', toggleMobileMenu);
     
     // Navigation links
@@ -331,6 +476,10 @@ document.addEventListener('DOMContentLoaded', function() {
         // Close mobile menu on resize to desktop
         if (window.innerWidth > 768) {
             closeMobileMenu();
+        }
+
+        if (document.documentElement.getAttribute('data-theme') === 'hacker') {
+            resizeMatrixCanvas();
         }
     });
 });
@@ -417,4 +566,3 @@ body.loaded {
 const loadingStyleSheet = document.createElement('style');
 loadingStyleSheet.textContent = loadingCSS;
 document.head.appendChild(loadingStyleSheet);
-
