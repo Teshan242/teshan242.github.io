@@ -1,8 +1,14 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Pasindu Kumarasinghe — Cyber Security undergraduate focused on network security, ethical hacking, and secure systems. View projects, skills, and contact details.">
+    <meta name="theme-color" content="#0b1220">
+    <meta property="og:title" content="Pasindu Kumarasinghe — Portfolio">
+    <meta property="og:description" content="Cyber Security undergraduate focused on network security, ethical hacking, and secure systems.">
+    <meta property="og:type" content="website">
     <title>Pasindu Kumarasinghe - Portfolio</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,10 +17,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    <canvas id="matrix-rain" aria-hidden="true"></canvas>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <div class="nav-logo">PK</div>
+            <a class="nav-logo" href="#home" aria-label="Go to home">
+                <img src="images/logo.gif" alt="PK logo" class="nav-logo-img">
+                <span class="nav-logo-text">PK</span>
+            </a>
             <ul class="nav-menu">
                 <li><a href="#home" class="nav-link">Home</a></li>
                 <li><a href="#about" class="nav-link">About</a></li>
@@ -22,9 +32,15 @@
                 <li><a href="#skills" class="nav-link">Skills</a></li>
                 <li><a href="#projects" class="nav-link">Projects</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
+                <li><a href="cv/Pasindu_Kumarasinghe_CV.pdf" class="nav-link" target="_blank" rel="noopener noreferrer">Resume</a></li>
             </ul>
-            <div class="theme-toggle">
-                <i class="fas fa-moon" id="theme-icon"></i>
+            <div class="theme-toggles">
+                <div class="theme-toggle" id="theme-toggle-lightdark" role="button" tabindex="0" aria-label="Toggle light or dark theme">
+                    <i class="fas fa-moon" id="theme-icon"></i>
+                </div>
+                <div class="theme-toggle" id="theme-toggle-hacker" role="button" tabindex="0" aria-label="Toggle hacker theme">
+                    <i class="fas fa-terminal" id="hacker-icon"></i>
+                </div>
             </div>
             <div class="hamburger">
                 <span></span>
@@ -46,7 +62,8 @@
                 <div class="hero-buttons">
                     <a href="#projects" class="btn btn-primary">View Projects</a>
                     <a href="#contact" class="btn btn-secondary">Contact Me</a>
-                    <a href="terminal.html" class="btn btn-primary">Terminal</a> 
+                    <a href="cv/Pasindu_Kumarasinghe_CV.pdf" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Download CV</a>
+                    <a href="terminal.html" class="btn btn-secondary">Terminal</a> 
 
                 </div>
             </div>
@@ -196,11 +213,8 @@
                             <span>Static Analysis</span>
                         </div>
                         <div class="project-links">
-                            <a href="#" class="project-link">
+                            <a href="https://github.com/Teshan242" class="project-link" target="_blank" rel="noopener noreferrer">
                                 <i class="fab fa-github"></i> GitHub
-                            </a>
-                            <a href="#" class="project-link">
-                                <i class="fas fa-external-link-alt"></i> Live Demo
                             </a>
                         </div>
                     </div>
@@ -218,11 +232,8 @@
                             <span>Machine Learning</span>
                         </div>
                         <div class="project-links">
-                            <a href="#" class="project-link">
+                            <a href="https://github.com/Teshan242" class="project-link" target="_blank" rel="noopener noreferrer">
                                 <i class="fab fa-github"></i> GitHub
-                            </a>
-                            <a href="#" class="project-link">
-                                <i class="fas fa-external-link-alt"></i> Live Demo
                             </a>
                         </div>
                     </div>
@@ -232,7 +243,7 @@
                         <i class="fas fa-key"></i>
                     </div>
                     <div class="project-content">
-                        <h3>🔐 Password Security Analyzer By Teshan</h3>
+                        <h3>Password Security Analyzer</h3>
                         <p>A Python-based GUI and web application that evaluates password strength, detects common weak passwords, and provides actionable improvement tips. Users receive a security score, strength level, and guidance to create stronger passwords—perfect for learning cybersecurity best practices.</p>
                         <div class="project-tech">
                             <span>Python</span>
@@ -241,16 +252,11 @@
                             <span>GUI / Web App</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://github.com/Teshan242/Password-Security-Analyzer" class="project-link" target="_blank">
+                            <a href="https://github.com/Teshan242/Password-Security-Analyzer" class="project-link" target="_blank" rel="noopener noreferrer">
                             <i class="fab fa-github"></i> GitHub
-                            </a>
-                            <a href="https://yourusername.pythonanywhere.com" class="project-link" target="_blank">
-                            <i class="fas fa-external-link-alt"></i> Live Demo
                             </a>
                         </div>
                     </div>
-                </div>
-
                 </div>
                 <div class="project-card">
                     <div class="project-image">
@@ -265,11 +271,8 @@
                             <span>Web Security</span>
                         </div>
                         <div class="project-links">
-                            <a href="#" class="project-link">
+                            <a href="https://github.com/Teshan242" class="project-link" target="_blank" rel="noopener noreferrer">
                                 <i class="fab fa-github"></i> GitHub
-                            </a>
-                            <a href="#" class="project-link">
-                                <i class="fas fa-external-link-alt"></i> Live Demo
                             </a>
                         </div>
                     </div>
@@ -324,10 +327,10 @@
             <div class="footer-content">
                 <p>&copy; 2026 Pasindu Kumarasinghe. All rights reserved.</p>
                 <div class="social-links">
-                    <a href="#" class="social-link" target="_blank">
+                    <a href="https://www.linkedin.com/in/pasindu-kumarasinghe-17b46431b/" class="social-link" target="_blank" rel="noopener noreferrer">
                         <i class="fab fa-linkedin"></i>
                     </a>
-                    <a href="#" class="social-link" target="_blank">
+                    <a href="https://github.com/Teshan242" class="social-link" target="_blank" rel="noopener noreferrer">
                         <i class="fab fa-github"></i>
                     </a>
                     <a href="mailto:pasindukumarasinghe200@gmail.com" class="social-link">
@@ -341,5 +344,4 @@
     <script src="script.js"></script>
 </body>
 </html>
-
 
