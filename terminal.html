@@ -177,11 +177,13 @@
         function typeEffect(){if(idx<text.length){span.innerHTML+=text[idx]; idx++; setTimeout(typeEffect,30); playTypingSound();} else {span.classList.remove('typing');}}
         typeEffect();
       }
-      if(value.toLowerCase()==='help') displayResponse('Available commands: about, skills, projects, contact');
-      else if(value.toLowerCase()==='about') displayResponse('I am Teshan, a Cyber Security student passionate about Web Development & Security.');
-      else if(value.toLowerCase()==='skills') displayResponse('Skills: Python, Web Security, Networking, Linux, CTF');
-      else if(value.toLowerCase()==='projects') displayResponse('Projects: Web Vulnerability Scanner, NIDS, Password Security Analyzer');
-      else if(value.toLowerCase()==='contact') displayResponse('Email: pasindukumarasinghe200@gmail.com | LinkedIn: pasindu-kumarasinghe');
+      if(value.toLowerCase()==='help') displayResponse('Available commands: about, skills, projects, contact, certificates, social');
+      else if(value.toLowerCase()==='about') displayResponse('I am Pasindu Kumarasinghe, a Cyber Security undergraduate at SLIIT, passionate about ethical hacking, web development, and AI security.');
+      else if(value.toLowerCase()==='skills') displayResponse('Programming: Python, Bash, Java, JavaScript | Cybersecurity: Nmap, Metasploit, Burp Suite, Wireshark, Threat Detection | Web Dev: Flask, Spring Boot, GUI | ML: Scikit-learn, Pandas, TensorFlow | Systems: Linux, Networking, Automation');
+      else if(value.toLowerCase()==='projects') displayResponse('Projects: Advanced Vulnerability Scanner, TeshanScript v1 ULTRA, Phishing URL Detection System, Web Vulnerability Scanner, Password Security Analyzer, AdVerity Hub');
+      else if(value.toLowerCase()==='certificates') displayResponse('Certificates: Introduction to Programming Using Python, Java Programming, Generative AI, Introduction to Cybersecurity');
+      else if(value.toLowerCase()==='contact') displayResponse('Email: pasindukumarasinghe200@gmail.com | LinkedIn: Pasindu Kumarasinghe | GitHub: Teshan242');
+      else if(value.toLowerCase()==='social') displayResponse('Blog: securewithteshan.blogspot.com | LinkedIn Group: linkedin.com/groups/18980012 | Facebook: facebook.com/share/1AgQ7GUm2k/');
       else displayResponse('Command not found. Type help for commands.');
     }
 
