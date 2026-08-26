@@ -1,137 +1,363 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Pasindu Kumarasinghe — Cyber Security undergraduate focused on network security, ethical hacking, and secure systems. View projects, skills, and contact details.">
+
+    <meta name="description"
+        content="Pasindu Kumarasinghe — Cyber Security undergraduate focused on network security, ethical hacking, secure systems, and cybersecurity projects.">
+
     <meta name="theme-color" content="#0b1220">
+
     <meta property="og:title" content="Pasindu Kumarasinghe — Portfolio">
-    <meta property="og:description" content="Cyber Security undergraduate focused on network security, ethical hacking, and secure systems.">
+    <meta property="og:description"
+        content="Cyber Security undergraduate focused on network security, ethical hacking, and secure systems.">
     <meta property="og:type" content="website">
+
     <title>Pasindu Kumarasinghe - Portfolio</title>
+
     <link rel="stylesheet" href="styles.css">
+
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
+
+    <!-- Matrix Background -->
     <canvas id="matrix-rain" aria-hidden="true"></canvas>
-    <!-- Navigation -->
+
+
+    <!-- =========================
+         NAVIGATION
+    ========================== -->
+
     <nav class="navbar">
+
         <div class="nav-container">
+
             <a class="nav-logo" href="#home" aria-label="Go to home">
+
                 <img src="images/logo.gif" alt="PK logo" class="nav-logo-img">
+
                 <span class="nav-logo-text">PK</span>
+
             </a>
+
+
             <ul class="nav-menu">
-                <li><a href="#home" class="nav-link">Home</a></li>
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#education" class="nav-link">Education</a></li>
-                <li><a href="#skills" class="nav-link">Skills</a></li>
-                <li><a href="#projects" class="nav-link">Projects</a></li>
-                <li><a href="#certificates" class="nav-link">Certificates</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
-                <li><a href="cv/Pasindu_Kumarasinghe_CV.pdf" class="nav-link" target="_blank" rel="noopener noreferrer">Resume</a></li>
+
+                <li>
+                    <a href="#home" class="nav-link">
+                        Home
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#about" class="nav-link">
+                        About
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#education" class="nav-link">
+                        Education
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#skills" class="nav-link">
+                        Skills
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#projects" class="nav-link">
+                        Projects
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#certificates" class="nav-link">
+                        Certificates
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#github" class="nav-link">
+                        GitHub
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#contact" class="nav-link">
+                        Contact
+                    </a>
+                </li>
+
+                <li>
+                    <a href="cv/Pasindu_Kumarasinghe_CV.pdf" class="nav-link" target="_blank" rel="noopener noreferrer">
+                        Resume
+                    </a>
+                </li>
+
             </ul>
+
+
+            <!-- Theme Controls -->
+
             <div class="theme-toggles">
-                <div class="theme-toggle" id="theme-toggle-lightdark" role="button" tabindex="0" aria-label="Toggle light or dark theme">
+
+                <div class="theme-toggle" id="theme-toggle-lightdark" role="button" tabindex="0"
+                    aria-label="Toggle light or dark theme">
                     <i class="fas fa-moon" id="theme-icon"></i>
                 </div>
-                <div class="theme-toggle" id="theme-toggle-hacker" role="button" tabindex="0" aria-label="Toggle hacker theme">
+
+
+                <div class="theme-toggle" id="theme-toggle-hacker" role="button" tabindex="0"
+                    aria-label="Toggle hacker theme">
                     <i class="fas fa-terminal" id="hacker-icon"></i>
                 </div>
+
             </div>
-            <div class="hamburger">
+
+
+            <!-- Mobile Menu -->
+
+            <div class="hamburger" aria-label="Open navigation menu" role="button" tabindex="0">
+
                 <span></span>
                 <span></span>
                 <span></span>
+
             </div>
+
         </div>
+
     </nav>
 
-    <!-- Hero Section -->
+
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
     <section id="home" class="hero">
+
         <div class="hero-container">
+
             <div class="hero-content">
-                <h1 class="hero-title">Pasindu Kumarasinghe</h1>
-                <p class="hero-subtitle">Cyber Security Undergraduate | Security Enthusiast | Future Security Analyst</p>
+
+                <h1 class="hero-title">
+                    Pasindu Kumarasinghe
+                </h1>
+
+                <p class="hero-subtitle">
+                    Cyber Security Undergraduate |
+                    Security Enthusiast |
+                    Future Security Analyst
+                </p>
+
                 <p class="hero-description">
-                    Passionate Cyber Security student at SLIIT Faculty of Computing, dedicated to protecting digital assets and building secure systems.
+                    Passionate Cyber Security student at SLIIT Faculty
+                    of Computing, dedicated to protecting digital assets
+                    and building secure systems.
                 </p>
+
+
                 <div class="hero-buttons">
-                    <a href="#projects" class="btn btn-primary">View Projects</a>
-                    <a href="#contact" class="btn btn-secondary">Contact Me</a>
-                    <a href="cv/Pasindu_Kumarasinghe_CV.pdf" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Download CV</a>
-                    <a href="terminal.html" class="btn btn-secondary">Terminal</a> 
+
+                    <a href="#projects" class="btn btn-primary">
+                        View Projects
+                    </a>
+
+                    <a href="#github" class="btn btn-secondary">
+                        <i class="fab fa-github"></i>
+                        GitHub
+                    </a>
+
+                    <a href="#contact" class="btn btn-secondary">
+                        Contact Me
+                    </a>
+
+                    <a href="cv/Pasindu_Kumarasinghe_CV.pdf" class="btn btn-primary" target="_blank"
+                        rel="noopener noreferrer">
+                        Download CV
+                    </a>
+
+                    <a href="terminal.html" class="btn btn-secondary">
+                        <i class="fas fa-terminal"></i>
+                        Terminal
+                    </a>
 
                 </div>
+
             </div>
+
+
             <div class="hero-image">
+
                 <img src="images/profilepic.jpeg" alt="Pasindu Kumarasinghe" class="profile-image">
+
             </div>
+
         </div>
+
     </section>
 
-    <!-- About Section -->
+
+
+    <!-- =========================
+         ABOUT
+    ========================== -->
+
     <section id="about" class="about">
+
         <div class="container">
-            <h2 class="section-title">About Me</h2>
+
+            <h2 class="section-title">
+                About Me
+            </h2>
+
             <div class="about-content">
+
                 <p>
-                    I am a passionate undergraduate student specializing in Cyber Security at the Sri Lanka Institute of Information Technology (SLIIT), 
-                    Faculty of Computing. Since 2024, I have been pursuing my degree with a strong focus on 
-                    information security, network security, and ethical hacking.
+                    I am a passionate undergraduate student specializing
+                    in Cyber Security at the Sri Lanka Institute of
+                    Information Technology (SLIIT), Faculty of Computing.
+                    Since 2024, I have been pursuing my degree with a
+                    strong focus on information security, network security,
+                    and ethical hacking.
                 </p>
+
                 <p>
-                    My journey in cyber security began with a fascination for understanding how systems can be protected against threats, which has evolved into 
-                    a deep passion for identifying vulnerabilities and implementing robust security measures. I enjoy working with security tools and am 
-                    constantly expanding my knowledge in penetration testing, incident response, and security compliance.
+                    My journey in cyber security began with a fascination
+                    for understanding how systems can be protected against
+                    threats. This has evolved into a deep passion for
+                    identifying vulnerabilities and implementing robust
+                    security measures.
                 </p>
+
                 <p>
-                    My career goal is to become a professional Security Analyst and Cyber Security Consultant, helping organizations 
-                    protect their digital assets and maintain robust security postures against evolving threats.
+                    I enjoy building cybersecurity tools, performing
+                    security assessments, studying network security,
+                    and continuously improving my technical skills.
                 </p>
+
+                <p>
+                    My career goal is to become a professional Security
+                    Analyst and Cyber Security Consultant, helping
+                    organizations protect their digital assets.
+                </p>
+
             </div>
+
         </div>
+
     </section>
 
-    <!-- Education Section -->
+
+
+    <!-- =========================
+         EDUCATION
+    ========================== -->
+
     <section id="education" class="education">
+
         <div class="container">
-            <h2 class="section-title">Education</h2>
+
+            <h2 class="section-title">
+                Education
+            </h2>
+
             <div class="education-card">
+
                 <div class="education-icon">
+
                     <i class="fas fa-graduation-cap"></i>
+
                 </div>
+
                 <div class="education-content">
-                    <h3>SLIIT – Faculty of Computing</h3>
-                    <p class="education-degree">Bachelor of Science in Cyber Security</p>
-                    <p class="education-period">2024 – Present</p>
-                    <p class="education-location">Colombo, Western Province, Sri Lanka</p>
+
+                    <h3>
+                        SLIIT – Faculty of Computing
+                    </h3>
+
+                    <p class="education-degree">
+                        Bachelor of Science in Cyber Security
+                    </p>
+
+                    <p class="education-period">
+                        2024 – Present
+                    </p>
+
+                    <p class="education-location">
+                        Colombo, Western Province, Sri Lanka
+                    </p>
+
                 </div>
+
             </div>
+
         </div>
+
     </section>
 
-    <!-- Skills Section -->
+
+
+    <!-- =========================
+         SKILLS
+    ========================== -->
+
     <section id="skills" class="skills">
+
         <div class="container">
-            <h2 class="section-title">Skills</h2>
+
+            <h2 class="section-title">
+                Skills
+            </h2>
+
+
             <div class="skills-container">
+
+
                 <div class="skill-category">
-                    <h3 class="skill-category-title">Programming</h3>
+
+                    <h3 class="skill-category-title">
+                        Programming
+                    </h3>
+
                     <div class="skill-tags">
+
                         <span class="skill-tag">Python</span>
                         <span class="skill-tag">Bash</span>
                         <span class="skill-tag">Java</span>
                         <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">C</span>
+
                     </div>
+
                 </div>
+
+
+
                 <div class="skill-category">
-                    <h3 class="skill-category-title">Cybersecurity Tools</h3>
+
+                    <h3 class="skill-category-title">
+                        Cybersecurity Tools
+                    </h3>
+
                     <div class="skill-tags">
+
                         <span class="skill-tag">Nmap</span>
                         <span class="skill-tag">John the Ripper</span>
                         <span class="skill-tag">Hashcat</span>
@@ -139,312 +365,615 @@
                         <span class="skill-tag">Burp Suite</span>
                         <span class="skill-tag">Wireshark</span>
                         <span class="skill-tag">Threat Detection</span>
-                        <span class="skill-tag">Privacy And Data Confidentiality</span>
                         <span class="skill-tag">Cybersecurity</span>
+
                     </div>
+
                 </div>
+
+
+
                 <div class="skill-category">
-                    <h3 class="skill-category-title">Web & App Development</h3>
+
+                    <h3 class="skill-category-title">
+                        Web & App Development
+                    </h3>
+
                     <div class="skill-tags">
+
                         <span class="skill-tag">Flask</span>
                         <span class="skill-tag">Spring Boot</span>
-                        <span class="skill-tag">GUI Development</span>
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">Express.js</span>
                         <span class="skill-tag">HTML/CSS</span>
+                        <span class="skill-tag">MongoDB</span>
+
                     </div>
+
                 </div>
+
+
+
                 <div class="skill-category">
-                    <h3 class="skill-category-title">Machine Learning</h3>
+
+                    <h3 class="skill-category-title">
+                        Machine Learning
+                    </h3>
+
                     <div class="skill-tags">
+
                         <span class="skill-tag">Scikit-learn</span>
                         <span class="skill-tag">Pandas</span>
                         <span class="skill-tag">NumPy</span>
                         <span class="skill-tag">TensorFlow</span>
+
                     </div>
+
                 </div>
+
+
+
                 <div class="skill-category">
-                    <h3 class="skill-category-title">Networking & Systems</h3>
+
+                    <h3 class="skill-category-title">
+                        Networking & Systems
+                    </h3>
+
                     <div class="skill-tags">
+
                         <span class="skill-tag">Networking</span>
                         <span class="skill-tag">Linux</span>
                         <span class="skill-tag">Windows</span>
                         <span class="skill-tag">TCP/IP</span>
+                        <span class="skill-tag">DNS</span>
+                        <span class="skill-tag">DHCP</span>
+
                     </div>
+
                 </div>
+
+
+
                 <div class="skill-category">
-                    <h3 class="skill-category-title">Automation & DevOps</h3>
+
+                    <h3 class="skill-category-title">
+                        Automation & DevOps
+                    </h3>
+
                     <div class="skill-tags">
+
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">GitHub</span>
+                        <span class="skill-tag">Docker</span>
                         <span class="skill-tag">Automation</span>
                         <span class="skill-tag">Scripting</span>
-                        <span class="skill-tag">Git</span>
-                        <span class="skill-tag">Docker</span>
+
                     </div>
+
                 </div>
+
             </div>
+
         </div>
+
     </section>
 
-    <!-- Projects Section -->
+
+
+    <!-- =========================
+         PROJECTS
+    ========================== -->
+
     <section id="projects" class="projects">
+
         <div class="container">
-            <h2 class="section-title">Projects</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-image">
-                        <i class="fas fa-shield-virus"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3>Advanced Vulnerability Scanner</h3>
-                        <p>Modular vulnerability scanning tool built with Python and Flask for comprehensive security assessments.</p>
-                        <div class="project-tech">
-                            <span>Python</span>
-                            <span>Flask</span>
-                            <span>Cybersecurity</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://www.linkedin.com/posts/pasindu-kumarasinghe-17b46431b_python-cybersecurity-networking-activity-7443350019602034688-on2S?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFEMIe8B1tX8lyWVi_mqmfWpNJjDN75Htv8" class="project-link" target="_blank" rel="noopener noreferrer">
-                                <i class="fab fa-linkedin"></i> LinkedIn
-                            </a>
-                        </div>
-                    </div>
+
+            <h2 class="section-title">
+                Projects
+            </h2>
+
+
+            <p class="github-intro">
+                Explore my cybersecurity, programming, networking,
+                and machine learning projects.
+            </p>
+
+
+            <!-- GitHub Projects Container -->
+
+            <div id="github-projects" class="projects-grid">
+
+                <!-- Loading -->
+
+                <div class="github-loading">
+
+                    <i class="fas fa-spinner fa-spin"></i>
+
+                    <p>
+                        Loading projects from GitHub...
+                    </p>
+
                 </div>
-                <div class="project-card">
-                    <div class="project-image">
-                        <i class="fas fa-terminal"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3>TeshanScript v1 ULTRA</h3>
-                        <p>Terminal script for learning, automation, and safe cybersecurity experiments with comprehensive toolset.</p>
-                        <div class="project-tech">
-                            <span>Bash</span>
-                            <span>Automation</span>
-                            <span>Security</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://www.linkedin.com/posts/pasindu-kumarasinghe-17b46431b_teshanscript-cybersecurity-bashscript-activity-7432536865708208128-M3FE?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFEMIe8B1tX8lyWVi_mqmfWpNJjDN75Htv8" class="project-link" target="_blank" rel="noopener noreferrer">
-                                <i class="fab fa-linkedin"></i> LinkedIn
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image">
-                        <i class="fas fa-brain"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3>Phishing URL Detection System</h3>
-                        <p>Machine learning-powered system that detects phishing URLs in real time with high accuracy.</p>
-                        <div class="project-tech">
-                            <span>Machine Learning</span>
-                            <span>Python</span>
-                            <span>Security</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://www.linkedin.com/posts/pasindu-kumarasinghe-17b46431b_machinelearning-cybersecurity-phishingdetection-activity-7429134951335333889-aQRH?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFEMIe8B1tX8lyWVi_mqmfWpNJjDN75Htv8" class="project-link" target="_blank" rel="noopener noreferrer">
-                                <i class="fab fa-linkedin"></i> LinkedIn
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image">
-                        <i class="fas fa-bug"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3>Web Vulnerability Scanner</h3>
-                        <p>Automated web application security scanner using Python, Flask, and BeautifulSoup for vulnerability detection.</p>
-                        <div class="project-tech">
-                            <span>Python</span>
-                            <span>Flask</span>
-                            <span>BeautifulSoup</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://www.linkedin.com/posts/pasindu-kumarasinghe-17b46431b_cybersecurity-python-flask-activity-7426263176192749568-9d5V?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFEMIe8B1tX8lyWVi_mqmfWpNJjDN75Htv8" class="project-link" target="_blank" rel="noopener noreferrer">
-                                <i class="fab fa-linkedin"></i> LinkedIn
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image">
-                        <i class="fas fa-key"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3>Password Security Analyzer</h3>
-                        <p>Python GUI application that evaluates password strength with actionable security tips and recommendations.</p>
-                        <div class="project-tech">
-                            <span>Python</span>
-                            <span>GUI</span>
-                            <span>Security</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://www.linkedin.com/posts/pasindu-kumarasinghe-17b46431b_project-title-password-security-analyzer-activity-7426200265181016064-j3nD?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFEMIe8B1tX8lyWVi_mqmfWpNJjDN75Htv8" class="project-link" target="_blank" rel="noopener noreferrer">
-                                <i class="fab fa-linkedin"></i> LinkedIn
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image">
-                        <i class="fas fa-ad"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3>AdVerity Hub</h3>
-                        <p>Full-stack ad agency platform built with Spring Boot and Thymeleaf, featuring multi-role workflow and analytics.</p>
-                        <div class="project-tech">
-                            <span>Spring Boot</span>
-                            <span>Thymeleaf</span>
-                            <span>Full-Stack</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://www.linkedin.com/posts/pasindu-kumarasinghe-17b46431b_adverity-hub-web-based-advertising-agency-activity-7420516578254966784-iVzw?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFEMIe8B1tX8lyWVi_mqmfWpNJjDN75Htv8" class="project-link" target="_blank" rel="noopener noreferrer">
-                                <i class="fab fa-linkedin"></i> LinkedIn
-                            </a>
-                        </div>
-                    </div>
-                </div>
+
             </div>
+
         </div>
+
     </section>
 
-    <!-- Certificates Section -->
+
+
+    <!-- =========================
+         GITHUB LIVE PROGRESS
+    ========================== -->
+
+    <section id="github" class="github-section">
+
+        <div class="container">
+
+            <h2 class="section-title">
+                GitHub Live Progress
+            </h2>
+
+
+            <p class="github-description">
+
+                My portfolio is connected directly to GitHub.
+                New public repositories and project updates
+                automatically appear here.
+
+            </p>
+
+
+            <!-- GitHub Statistics -->
+
+            <div id="github-stats" class="github-stats">
+
+                <div class="github-stat-card">
+
+                    <i class="fas fa-code-branch"></i>
+
+                    <span id="repo-count" class="github-stat-number">
+                        --
+                    </span>
+
+                    <span class="github-stat-label">
+                        Public Repositories
+                    </span>
+
+                </div>
+
+
+                <div class="github-stat-card">
+
+                    <i class="fas fa-star"></i>
+
+                    <span id="star-count" class="github-stat-number">
+                        --
+                    </span>
+
+                    <span class="github-stat-label">
+                        Total Stars
+                    </span>
+
+                </div>
+
+
+                <div class="github-stat-card">
+
+                    <i class="fas fa-code"></i>
+
+                    <span id="language-count" class="github-stat-number">
+                        --
+                    </span>
+
+                    <span class="github-stat-label">
+                        Main Languages
+                    </span>
+
+                </div>
+
+
+                <div class="github-stat-card">
+
+                    <i class="fas fa-clock"></i>
+
+                    <span id="last-update" class="github-stat-number">
+                        --
+                    </span>
+
+                    <span class="github-stat-label">
+                        Last Activity
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- GitHub Button -->
+
+            <div class="github-profile-button">
+
+                <a href="https://github.com/Teshan242" target="_blank" rel="noopener noreferrer"
+                    class="btn btn-primary">
+
+                    <i class="fab fa-github"></i>
+
+                    View Full GitHub Profile
+
+                </a>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         CERTIFICATES
+    ========================== -->
+
     <section id="certificates" class="certificates">
+
         <div class="container">
-            <h2 class="section-title">Certificates</h2>
+
+            <h2 class="section-title">
+                Certificates
+            </h2>
+
+
             <div class="certificates-grid">
+
+
                 <div class="certificate-card">
+
                     <div class="certificate-image">
-                        <img src="images/python-cert.jpg" alt="Introduction to Programming Using Python" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+
+                        <img src="images/python-cert.jpg" alt="Introduction to Programming Using Python"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+
                         <div class="certificate-placeholder">
+
                             <i class="fab fa-python"></i>
+
                         </div>
+
                     </div>
+
+
                     <div class="certificate-content">
-                        <h3>Introduction to Programming Using Python</h3>
-                        <p>Comprehensive certification covering Python programming fundamentals, data structures, and problem-solving techniques.</p>
+
+                        <h3>
+                            Introduction to Programming Using Python
+                        </h3>
+
+                        <p>
+                            Comprehensive certification covering Python
+                            programming fundamentals, data structures,
+                            and problem-solving techniques.
+                        </p>
+
                     </div>
+
                 </div>
+
+
+
                 <div class="certificate-card">
+
                     <div class="certificate-image">
-                        <img src="images/java-cert.jpg" alt="Java Programming" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+
+                        <img src="images/java-cert.jpg" alt="Java Programming"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+
                         <div class="certificate-placeholder">
+
                             <i class="fab fa-java"></i>
+
                         </div>
+
                     </div>
+
+
                     <div class="certificate-content">
-                        <h3>Java Programming</h3>
-                        <p>Professional certification in Java development, object-oriented programming, and enterprise application design.</p>
+
+                        <h3>
+                            Java Programming
+                        </h3>
+
+                        <p>
+                            Professional certification in Java development,
+                            object-oriented programming, and enterprise
+                            application design.
+                        </p>
+
                     </div>
+
                 </div>
+
+
+
                 <div class="certificate-card">
+
                     <div class="certificate-image">
-                        <img src="images/generative-ai-cert.jpg" alt="Generative AI" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+
+                        <img src="images/generative-ai-cert.jpg" alt="Generative AI"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+
                         <div class="certificate-placeholder">
+
                             <i class="fas fa-brain"></i>
+
                         </div>
+
                     </div>
+
+
                     <div class="certificate-content">
-                        <h3>Generative AI</h3>
-                        <p>Advanced certification in generative AI technologies, prompt engineering, and AI model implementation.</p>
+
+                        <h3>
+                            Generative AI
+                        </h3>
+
+                        <p>
+                            Certification covering generative AI
+                            technologies, prompt engineering,
+                            and AI model implementation.
+                        </p>
+
                     </div>
+
                 </div>
+
+
+
                 <div class="certificate-card">
+
                     <div class="certificate-image">
-                        <img src="images/cybersecurity-cert.jpg" alt="Introduction to Cybersecurity" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+
+                        <img src="images/cybersecurity-cert.jpg" alt="Introduction to Cybersecurity"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+
                         <div class="certificate-placeholder">
+
                             <i class="fas fa-shield-alt"></i>
+
                         </div>
+
                     </div>
+
+
                     <div class="certificate-content">
-                        <h3>Introduction to Cybersecurity</h3>
-                        <p>Fundamental certification covering network security, ethical hacking, and cybersecurity best practices.</p>
+
+                        <h3>
+                            Introduction to Cybersecurity
+                        </h3>
+
+                        <p>
+                            Fundamental certification covering
+                            network security, ethical hacking,
+                            and cybersecurity best practices.
+                        </p>
+
                     </div>
+
                 </div>
+
+
             </div>
+
         </div>
+
     </section>
 
-    <!-- Contact Section -->
+
+
+    <!-- =========================
+         CONTACT
+    ========================== -->
+
     <section id="contact" class="contact">
+
         <div class="container">
-            <h2 class="section-title">Contact</h2>
+
+            <h2 class="section-title">
+                Contact
+            </h2>
+
+
             <div class="contact-content">
+
+
                 <div class="contact-info">
-                    <h3>Get in Touch</h3>
-                    <p>I'm always interested in hearing about new opportunities and exciting projects. Feel free to reach out!</p>
+
+                    <h3>
+                        Get in Touch
+                    </h3>
+
+                    <p>
+                        I'm always interested in hearing about
+                        new opportunities and exciting projects.
+                        Feel free to reach out!
+                    </p>
+
+
                     <div class="contact-details">
+
+
                         <div class="contact-item">
+
                             <i class="fas fa-envelope"></i>
-                            <span>pasindukumarasinghe200@gmail.com</span>
+
+                            <span>
+                                pasindukumarasinghe200@gmail.com
+                            </span>
+
                         </div>
+
+
                         <div class="contact-item">
+
                             <i class="fab fa-linkedin"></i>
-                            <a href="https://www.linkedin.com/in/pasindu-kumarasinghe-17b46431b/" target="_blank">Pasindu Kumarasinghe</a>
+
+                            <a href="https://www.linkedin.com/in/pasindu-kumarasinghe-17b46431b/" target="_blank"
+                                rel="noopener noreferrer">
+                                Pasindu Kumarasinghe
+                            </a>
+
                         </div>
+
+
                         <div class="contact-item">
+
                             <i class="fab fa-github"></i>
-                            <a href="https://github.com/Teshan242" target="_blank">GitHub Profile</a>
+
+                            <a href="https://github.com/Teshan242" target="_blank" rel="noopener noreferrer">
+                                GitHub Profile
+                            </a>
+
                         </div>
+
+
                         <div class="contact-item">
+
                             <i class="fas fa-blog"></i>
-                            <a href="https://securewithteshan.blogspot.com" target="_blank">Blog</a>
+
+                            <a href="https://securewithteshan.blogspot.com" target="_blank" rel="noopener noreferrer">
+                                Blog
+                            </a>
+
                         </div>
+
+
                         <div class="contact-item">
+
                             <i class="fab fa-linkedin"></i>
-                            <a href="https://www.linkedin.com/groups/18980012" target="_blank">LinkedIn Group</a>
+
+                            <a href="https://www.linkedin.com/groups/18980012" target="_blank"
+                                rel="noopener noreferrer">
+                                LinkedIn Group
+                            </a>
+
                         </div>
+
+
                         <div class="contact-item">
+
                             <i class="fab fa-facebook"></i>
-                            <a href="https://www.facebook.com/share/1AgQ7GUm2k/" target="_blank">Facebook Page</a>
+
+                            <a href="https://www.facebook.com/share/1AgQ7GUm2k/" target="_blank"
+                                rel="noopener noreferrer">
+                                Facebook Page
+                            </a>
+
                         </div>
+
+
                     </div>
+
                 </div>
+
+
+
                 <form class="contact-form" action="https://formspree.io/f/mvzborkn" method="POST">
+
                     <div class="form-group">
+
                         <input type="text" id="name" name="name" placeholder="Your Name" required>
+
                     </div>
+
+
                     <div class="form-group">
+
                         <input type="email" id="email" name="email" placeholder="Your Email" required>
+
                     </div>
+
+
                     <input type="hidden" name="_subject" value="New Portfolio Contact Message">
+
+
                     <div class="form-group">
+
                         <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
+
                     </div>
-                    <button type="submit" class="btn btn-primary">Send Message</button>
+
+
+                    <button type="submit" class="btn btn-primary">
+                        Send Message
+                    </button>
+
                 </form>
+
+
             </div>
+
         </div>
+
     </section>
 
-    <!-- Footer -->
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
     <footer class="footer">
+
         <div class="container">
+
             <div class="footer-content">
-                <p>&copy; 2026 Pasindu Kumarasinghe. All rights reserved.</p>
+
+                <p>
+                    &copy; 2026 Pasindu Kumarasinghe.
+                    All rights reserved.
+                </p>
+
+
                 <div class="social-links">
-                    <a href="https://www.linkedin.com/in/pasindu-kumarasinghe-17b46431b/" class="social-link" target="_blank" rel="noopener noreferrer">
+
+                    <a href="https://www.linkedin.com/in/pasindu-kumarasinghe-17b46431b/" class="social-link"
+                        target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                         <i class="fab fa-linkedin"></i>
                     </a>
-                    <a href="https://github.com/Teshan242" class="social-link" target="_blank" rel="noopener noreferrer">
+
+
+                    <a href="https://github.com/Teshan242" class="social-link" target="_blank" rel="noopener noreferrer"
+                        aria-label="GitHub">
                         <i class="fab fa-github"></i>
                     </a>
-                    <a href="https://securewithteshan.blogspot.com" class="social-link" target="_blank" rel="noopener noreferrer">
+
+
+                    <a href="https://securewithteshan.blogspot.com" class="social-link" target="_blank"
+                        rel="noopener noreferrer" aria-label="Blog">
                         <i class="fas fa-blog"></i>
                     </a>
-                    <a href="https://www.linkedin.com/groups/18980012" class="social-link" target="_blank" rel="noopener noreferrer">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                    <a href="https://www.facebook.com/share/1AgQ7GUm2k/" class="social-link" target="_blank" rel="noopener noreferrer">
-                        <i class="fab fa-facebook"></i>
-                    </a>
-                    <a href="mailto:pasindukumarasinghe200@gmail.com" class="social-link">
+
+
+                    <a href="mailto:pasindukumarasinghe200@gmail.com" class="social-link" aria-label="Email">
                         <i class="fas fa-envelope"></i>
                     </a>
+
                 </div>
+
             </div>
+
         </div>
+
     </footer>
 
-    <script src="script.js"></script>
-</body>
-</html>
 
+
+    <!-- JavaScript -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
